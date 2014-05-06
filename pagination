@@ -1,0 +1,166 @@
+<!-- Simple pagination for all web developers -->
+<!--Created By Himanshu Bhatia -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<script>
+var pagelimit=5;
+
+$(document).ready(function(){
+	$("#page").children().css("display","none");
+	for(var j=0;j<pagelimit;j++)
+	{
+	$("#page").children().eq(j).css("display","block");
+	
+	}
+	
+	var size=$("#page").children().size();
+	
+	var number_pages=Math.ceil(size/pagelimit);
+	var pagination="";
+	pagination+="<a href='javascript:prevpage();'><p>Prev</p></a>";
+	for(var i=0;i<number_pages;i++)
+	{
+	pagination+="<a id='page_"+(i+1)+"' href='javascript:gotopage("+(i+1)+")'><p>"+(i+1)+"</p></a>";
+	}
+	pagination+="<a href='javascript:nextpage()'><p>Next</p></a>";
+	$("#pagination").html(pagination);
+	$("#page_1").addClass("active");
+	
+	});
+
+function gotopage(pageno)
+{
+$("#page").children().css("display","none");
+var child=$("#page").children();
+var start=(pageno-1)*pagelimit;
+var end=(pageno-1)*pagelimit+pagelimit;
+for(var k=start;k<end;k++)
+{
+$("#page").children().eq(k).css("display","block");
+}
+$("#page_"+pageno).addClass("active");
+$("#page_"+pageno).siblings().removeClass("active");
+}
+function prevpage()
+{
+if($("#page_1").hasClass("active")!=true){
+$("#page").children().css("display","none");
+var abc=$(".active").attr("id").split("_");
+var start=(parseInt(abc[1])-2)*pagelimit;
+var end=(parseInt(abc[1])-2)*pagelimit+pagelimit;
+console.log(start);
+console.log(end);
+for(var l=start;l<end;l++)
+{
+	
+$("#page").children().eq(l).css("display","block");
+}
+var p_no=parseInt(abc[1])-1;
+$("#page_"+p_no).addClass("active");
+$("#page_"+p_no).siblings().removeClass("active");
+}
+}
+
+function nextpage()
+{
+	var child=$("#page").children().size();
+	var total_page=Math.ceil(child/pagelimit);
+	var total_page=parseInt(total_page);
+	
+if($("#page_"+total_page).hasClass("active")!=true){
+	
+$("#page").children().css("display","none");
+var abc=$(".active").attr("id").split("_");
+var start=parseInt(abc[1])*pagelimit;
+var end=parseInt(abc[1])*pagelimit+pagelimit;
+console.log(start);
+console.log(end);
+for(var l=start;l<end;l++)
+{
+	
+$("#page").children().eq(l).css("display","block");
+}
+var p_no=parseInt(abc[1])+1;
+console.log(p_no);
+$("#page_"+p_no).addClass("active");
+$("#page_"+p_no).siblings().removeClass("active");
+}
+}
+</script>
+<style>
+.active > p{	
+	color:green;
+	}
+	a{
+	float: left;
+margin: 10px 10px 10px 10px;
+	}
+</style>
+<body>
+<div id="page">
+		<p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+		<p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+        <p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+		<p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+        <p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+		<p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+        <p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+		<p>ABCD</p>
+		<p>EFGH</p>
+		<p>IJKL</p>
+		<p>MNOP</p>
+		<p>QRST</p>
+		<p>UVWX</p>
+		<p>YZ</p>
+</div>
+<div id="pagination"></div>
+</body>
+</html>
+<!--Created By Himanshu Bhatia -->
